@@ -66,12 +66,3 @@ export const WeatherInfoContainer = styled.View`
 
   margin: ${RFValue(5)}px 0;
 `;
-
-export const BottomTabs = styled.View`
-  background-color: green;
-  width: 100%;
-  height: ${RFValue(60)}px;
-
-  position: absolute;
-  bottom: 0;
-`

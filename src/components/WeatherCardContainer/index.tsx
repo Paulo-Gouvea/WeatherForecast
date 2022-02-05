@@ -18,8 +18,8 @@ export function WeatherCardContainer(){
    return (
       <Container>
          <Today>
-            <Title color={theme.colors.custom_white} >Today</Title>
-            <Title color={theme.colors.custom_dark_blue_font} >View Report</Title>
+            <Title color={theme.colors.custom_white} >Hoje</Title>
+            <Title color={theme.colors.custom_white} >22 de Julho de 2021</Title>
          </Today>
          <WeatherCardScroll
             horizontal={true}

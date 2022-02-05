@@ -1,6 +1,7 @@
 export default {
     colors: {
         custom_white: '#FFFFFF',
+        custom_black: '#000000',
         custom_weather_icons: '#7882A7',
         custom_color: '#828CAE',
         custom_gray: '#CCCFDA',

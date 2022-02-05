@@ -12,8 +12,7 @@ import {
    Weather,
    Icon,
    Temperature,
-   WeatherInfoContainer,
-   BottomTabs
+   WeatherInfoContainer
 } from './styles';
  
 import { WeatherInfo } from '../../components/WeatherInfo';
@@ -58,10 +57,6 @@ export function Home(){
          </WeatherInfoContainer>
          
          <WeatherCardContainer />
-
-         <BottomTabs>
-
-         </BottomTabs>
       </Container>
    );
 }
