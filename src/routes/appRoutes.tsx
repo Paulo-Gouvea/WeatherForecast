@@ -6,7 +6,7 @@ import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import { useTheme } from "styled-components";
 
-import { Home } from "../screens/Home";
+import { MyLocation } from "../screens/MyLocation";
 import { Search } from "../screens/Search";
 import { Forecast } from "../screens/Forecast";
 
@@ -31,7 +31,7 @@ export function AppRoutes(){
         >
             <Screen 
                 name="My Location"
-                component={Home}
+                component={MyLocation}
                 options={{
                     tabBarIcon: (({ focused }) =>
                         <Ionicons
@@ -70,7 +70,7 @@ export function AppRoutes(){
             />
             <Screen 
                 name="Settings"
-                component={Home}
+                component={MyLocation}
                 options={{
                     tabBarIcon: (({ focused }) =>
                         <MaterialIcons

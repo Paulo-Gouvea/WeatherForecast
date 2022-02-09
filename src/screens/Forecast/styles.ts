@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-    margin: ${getStatusBarHeight() + RFValue(45)}px 0 ${RFValue(10)}px 0;
+    margin: ${getStatusBarHeight() + RFValue(45)}px 0 ${RFValue(5)}px 0;
 
     font-size: ${RFValue(25)}px;
     font-family: ${({ theme }) => theme.fonts.medium};

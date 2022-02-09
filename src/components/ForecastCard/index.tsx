@@ -8,18 +8,32 @@ import {
    Temperature,
    IconContainer,
 } from './styles';
+
+interface ForecastCardProps {
+   weekDay: string;
+   fullDate: string;
+   temperature: string;
+   icon: string;
+}
  
-export function ForecastCard(){
+export function ForecastCard({
+   weekDay,
+   fullDate,
+   temperature,
+   icon
+}: ForecastCardProps){
    return (
       <Container>
           <DayInfo>
-              <WeekDay>Wednesday</WeekDay>
-              <CalendarDay>25 de Novembro</CalendarDay>
+              <WeekDay>{weekDay}</WeekDay>
+              <CalendarDay>{fullDate}</CalendarDay>
           </DayInfo>
 
-          <Temperature>32ºC</Temperature>
+          <Temperature>{`${temperature}ºC`}</Temperature>
 
-          <IconContainer></IconContainer>
+          <IconContainer
+            source={{ uri: `http://openweathermap.org/img/wn/${icon}@2x.png` }}
+          ></IconContainer>
       </Container>
    );
 }

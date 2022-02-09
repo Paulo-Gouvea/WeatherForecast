@@ -10,6 +10,18 @@ export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.custom_color};
 `;
 
+export const Loading = styled.Text`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: ${getStatusBarHeight() + 15}px;
+
+  font-size: ${RFValue(25)}px;
+  font-family: ${({ theme }) => theme.fonts.medium};
+  color: ${({ theme }) => theme.colors.custom_white};
+`;
+
 export const WeatherIcons = styled.View`
   width: 100%;
   height: ${RFValue(89)}px;
@@ -25,7 +37,7 @@ export const Header = styled.View`
   align-items: center;
 `;
 
-export const Location = styled.Text`
+export const CurrentLocation = styled.Text`
   font-size: ${RFValue(25)}px;
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.custom_white};
@@ -44,8 +56,7 @@ export const Weather = styled.View`
   height: ${RFValue(247)}px;
 `;
 
-export const Icon = styled.View`
-  background-color: aqua;
+export const Icon = styled.Image`
   width: 100%;
   height: ${RFValue(155)}px;
 `;
@@ -64,5 +75,5 @@ export const WeatherInfoContainer = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  margin: ${RFValue(5)}px 0;
+  margin: ${RFValue(30)}px 0;
 `;

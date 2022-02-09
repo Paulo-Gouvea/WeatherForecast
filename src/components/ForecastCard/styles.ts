@@ -36,8 +36,7 @@ export const Temperature = styled.Text`
     color: ${({ theme }) => theme.colors.custom_white};
 `;
 
-export const IconContainer = styled.View`
+export const IconContainer = styled.Image`
     height: 100%;
     width: ${RFValue(75)}px;
-    background-color: beige;
 `;
