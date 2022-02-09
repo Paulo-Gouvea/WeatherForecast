@@ -20,7 +20,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors.custom_white};
 
-  margin-bottom: ${RFValue(3)}px;
+  margin-bottom: ${RFValue(10)}px;
 `;
 
 export const Description = styled.Text`
@@ -69,7 +69,6 @@ export const SearchIconButton = styled.View`
 `;
 
 export const ActualLocationButton = styled.View`
-    background-color: red;
     width: ${RFValue(40)}px;
     height: ${RFValue(50)}px;
 
@@ -81,3 +80,48 @@ export const ActualLocationButton = styled.View`
     margin-left: ${RFValue(10)}px;
 `;
 
+export const Content = styled.View`
+    flex: 1;
+    align-items: center;
+`;
+
+export const ChosenLocationWeather = styled.View`
+    background-color: ${({ theme }) => theme.colors.custom_light_weather_card};
+    width: ${RFValue(162)}px;
+    height: ${RFValue(200)}px;
+    
+    align-items: center;
+    justify-content: space-evenly;
+
+    border-radius: 20px;
+    margin-top: ${RFValue(40)}px;
+`;
+
+export const Temperature = styled.Text`
+    font-size: ${RFValue(20)}px;
+    font-family: ${({ theme }) => theme.fonts.medium};
+    color: ${({ theme }) => theme.colors.custom_white};
+`;
+
+export const Icon = styled.View`
+    background-color: green;
+    width: ${RFValue(80)}px;
+    height: ${RFValue(80)}px;
+`;
+
+export const ChosenLocation = styled.View`
+
+`;
+
+export const City = styled.Text`
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.fonts.light};
+    color: ${({ theme }) => theme.colors.custom_white};
+`;
+
+export const Country = styled.Text`
+    font-size: ${RFValue(16)}px;
+    font-family: ${({ theme }) => theme.fonts.medium};
+    color: ${({ theme }) => theme.colors.custom_white};
+    text-align: center;
+`;

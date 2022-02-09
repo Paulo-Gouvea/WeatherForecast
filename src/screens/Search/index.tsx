@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    StatusBar
+} from 'react-native';
+
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 import {
@@ -11,6 +15,13 @@ import {
    Input,
    SearchIconButton,
    ActualLocationButton,
+   Content,
+   ChosenLocationWeather,
+   Temperature,
+   Icon,
+   ChosenLocation,
+   City,
+   Country,
 } from './styles';
 
 import { useTheme } from 'styled-components';
@@ -20,9 +31,14 @@ export function Search(){
 
    return (
       <Container>
+            <StatusBar
+                backgroundColor='transparent'
+                barStyle='light-content'
+                translucent
+            />
           <Header>
-            <Title>Pick a location</Title>
-            <Description>Type the area or city you want to know the detailed weather information at this time.</Description>
+            <Title>Digite uma localização</Title>
+            <Description>Digite a área ou cidade que você queira saber sobre as informações detalhadas do tempo neste momento.</Description>
           </Header>
 
           <InputContainer>
@@ -48,6 +64,19 @@ export function Search(){
                 />
             </ActualLocationButton>
           </InputContainer>
+
+            <Content>
+                <ChosenLocationWeather>
+                    <Temperature>32ºC</Temperature>
+                    
+                    <Icon></Icon>
+                    
+                    <ChosenLocation>
+                        <City>Rio de Janeiro</City>
+                        <Country>Brasil</Country>
+                    </ChosenLocation>
+                </ChosenLocationWeather>
+            </Content>
       </Container>
    );
 }
