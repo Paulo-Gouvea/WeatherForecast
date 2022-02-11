@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
-    background-color: ${({theme}) => theme.colors.custom_light_weather_card};
+    background-color: ${({theme}) => theme.colors.light_weather_card};
     width: 100%;
     height: ${RFValue(75)}px;
 
@@ -21,19 +21,19 @@ export const DayInfo = styled.View`
 export const WeekDay = styled.Text`
     font-size: ${RFValue(12)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const CalendarDay = styled.Text`
     font-size: ${RFValue(9)}px;
     font-family: ${({ theme }) => theme.fonts.light};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Temperature = styled.Text`
     font-size: ${RFValue(30)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const IconContainer = styled.Image`

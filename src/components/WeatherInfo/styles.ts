@@ -8,11 +8,11 @@ export const Container = styled.View`
 export const WeatherInfoTitle = styled.Text`
     font-size: ${RFValue(10)}px;
     font-family: ${({ theme }) => theme.fonts.light};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const WeatherInfoValue = styled.Text`
     font-size: ${RFValue(15)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;

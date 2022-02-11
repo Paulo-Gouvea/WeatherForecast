@@ -5,7 +5,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 export const Container = styled.View`
     flex: 1;
 
-    background-color: ${({theme}) => theme.colors.custom_color};
+    background-color: ${({theme}) => theme.colors.light_background};
 `;
 
 export const Title = styled.Text`
@@ -13,7 +13,7 @@ export const Title = styled.Text`
 
     font-size: ${RFValue(25)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
     text-align: center;
 `;
 
@@ -28,13 +28,9 @@ export const ForecastTitle = styled.Text`
 
     font-size: ${RFValue(14)}px;
     font-family: ${({ theme }) => theme.fonts.light};
-    color: ${({ theme }) => theme.colors.custom_white};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
-export const ForecastCardList = styled.ScrollView`
+export const ForecastCardList = styled.ScrollView``;
 
-`;
-
-export const ForecastCardContainer = styled.View`
-
-`;
+export const ForecastCardContainer = styled.View``;

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 import {
     StatusBar
 } from 'react-native';
 
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import {
    Container,
@@ -14,20 +17,70 @@ import {
    InputBox,
    Input,
    SearchIconButton,
-   ActualLocationButton,
    Content,
    ChosenLocationWeather,
    Temperature,
    Icon,
    ChosenLocation,
-   City,
-   Country,
+   Weather,
+   Location,
 } from './styles';
 
+import { api } from '../../services/api';
+import { GeoLocationDTOS } from '../../interface/GeoLocationDTOS';
+import { WeatherDTOS } from '../../interface/WeatherDTOS';
+
 import { useTheme } from 'styled-components';
+
+const APP_ID = process.env.APP_ID;
  
 export function Search(){
+    const [desiredLocation, setDesiredLocation] = useState('');
+    const [isInputSubmitted, setIsInputSubmitted] = useState(false);
+    const [anotherLocationLoading, setAnotherLocationLoading] = useState(true);
+    const [anotherLocationInfo, setAnotherLocationInfo] = useState<GeoLocationDTOS>({} as GeoLocationDTOS);
+    const [anotherLocationWeather, setAnotherLocationWeather] = useState<WeatherDTOS>({} as WeatherDTOS);
+
     const theme = useTheme();
+
+    function handleInputSubmit(){
+        setIsInputSubmitted(true);
+    }
+
+    useEffect(() => {
+        if(isInputSubmitted === false) return;
+
+        let isMounted = true;
+
+        async function getAnotherLocationInfo(){
+            try {
+                const locationResponse = await api.get(`geo/1.0/direct?q=${desiredLocation}&appid=${APP_ID}`);
+                const locationData = locationResponse.data[0];
+
+                const weatherResponse = await api.get(`data/2.5/onecall?lat=${locationData.lat}&lon=${locationData.lon}&units=metric&exclude=minutely,hourly,daily,alerts&appid=${APP_ID}`);
+                const weatherData = weatherResponse.data;
+
+                if(isMounted){
+                    setAnotherLocationInfo(locationData);
+                    setAnotherLocationWeather(weatherData);
+                    setDesiredLocation('');
+                }
+
+                setIsInputSubmitted(false);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                if(isMounted){
+                    setAnotherLocationLoading(false);
+                }
+            }
+        }
+
+        getAnotherLocationInfo();
+        return () => {
+            isMounted = false;
+        };
+    }, [isInputSubmitted]);
 
    return (
       <Container>
@@ -37,46 +90,50 @@ export function Search(){
                 translucent
             />
           <Header>
-            <Title>Digite uma localização</Title>
-            <Description>Digite a área ou cidade que você queira saber sobre as informações detalhadas do tempo neste momento.</Description>
+            <Title>Digite uma cidade</Title>
+            <Description>Digite a cidade que você queira saber sobre as informações detalhadas do tempo neste momento.</Description>
           </Header>
 
           <InputContainer>
             <InputBox>
                 <Input 
-                    placeholder='Search'
-                    placeholderTextColor={theme.colors.custom_white}
+                    placeholder='Procurar'
+                    placeholderTextColor={theme.colors.white}
+                    value={desiredLocation}
+                    onChangeText={setDesiredLocation}
+                    onSubmitEditing={handleInputSubmit}
                 />
-                <SearchIconButton>
+                <SearchIconButton
+                    onPress={handleInputSubmit}
+                >
                     <FontAwesome
                         name="search"
                         size={20}
-                        color={theme.colors.custom_white}
+                        color={theme.colors.white}
                     />
                 </SearchIconButton>
             </InputBox>
-
-            <ActualLocationButton>
-                <Ionicons
-                    name="location-sharp"
-                    size={24}
-                    color={theme.colors.custom_white}
-                />
-            </ActualLocationButton>
           </InputContainer>
 
-            <Content>
-                <ChosenLocationWeather>
-                    <Temperature>32ºC</Temperature>
-                    
-                    <Icon></Icon>
-                    
-                    <ChosenLocation>
-                        <City>Rio de Janeiro</City>
-                        <Country>Brasil</Country>
-                    </ChosenLocation>
-                </ChosenLocationWeather>
-            </Content>
+            {
+                anotherLocationLoading === false &&
+                <Content>
+                    <ChosenLocationWeather>
+                        <Temperature>{`${anotherLocationWeather.current.temp.toFixed().toString()}ºC`}</Temperature>
+                        
+                        <Icon
+                            source={{ uri: `http://openweathermap.org/img/wn/${anotherLocationWeather.current.weather[0].icon}@2x.png` }}
+                        ></Icon>
+                        
+                        <ChosenLocation>
+                            <Weather>{`${anotherLocationWeather.current.weather[0].description}`}</Weather>
+                            <Location>{`${anotherLocationInfo.name}`}</Location>
+                        </ChosenLocation>
+                    </ChosenLocationWeather>
+                </Content>
+            }
+
+
       </Container>
    );
 }

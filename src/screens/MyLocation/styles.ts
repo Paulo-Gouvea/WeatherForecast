@@ -7,7 +7,7 @@ export const Container = styled.View`
 
   align-items: center;
 
-  background-color: ${({theme}) => theme.colors.custom_color};
+  background-color: ${({theme}) => theme.colors.light_background};
 `;
 
 export const Loading = styled.Text`
@@ -19,7 +19,7 @@ export const Loading = styled.Text`
 
   font-size: ${RFValue(25)}px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.custom_white};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const WeatherIcons = styled.View`
@@ -28,7 +28,7 @@ export const WeatherIcons = styled.View`
 
   margin-top: ${getStatusBarHeight() + 15}px;
 
-  background-color: ${({ theme }) => theme.colors.custom_weather_icons};
+  background-color: ${({ theme }) => theme.colors.light_weather_icons};
 `;
 
 export const Header = styled.View`
@@ -40,7 +40,7 @@ export const Header = styled.View`
 export const CurrentLocation = styled.Text`
   font-size: ${RFValue(25)}px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.custom_white};
+  color: ${({ theme }) => theme.colors.white};
 
   margin-bottom: ${RFValue(3)}px;
 `;
@@ -48,7 +48,7 @@ export const CurrentLocation = styled.Text`
 export const CurrentDate = styled.Text`
   font-size: ${RFValue(12)}px;
   font-family: ${({ theme }) => theme.fonts.light};
-  color: ${({ theme }) => theme.colors.custom_white};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Weather = styled.View`
@@ -64,7 +64,7 @@ export const Icon = styled.Image`
 export const Temperature = styled.Text`
   font-size: ${RFValue(50)}px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.custom_white};
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const WeatherInfoContainer = styled.View`

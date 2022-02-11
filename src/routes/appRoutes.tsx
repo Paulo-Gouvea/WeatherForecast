@@ -18,11 +18,11 @@ export function AppRoutes(){
             screenOptions={{
                 headerShown:false,
                 tabBarStyle:{
-                    backgroundColor: theme.colors.custom_light_weather_card,
+                    backgroundColor: theme.colors.light_weather_card,
                     height: 70,
                 },
-                tabBarActiveTintColor: theme.colors.custom_white,
-                tabBarInactiveTintColor: theme.colors.custom_black,
+                tabBarActiveTintColor: theme.colors.white,
+                tabBarInactiveTintColor: theme.colors.black,
                 tabBarLabelStyle: {
                     marginTop: -10,
                     marginBottom: 15
@@ -37,7 +37,7 @@ export function AppRoutes(){
                         <Ionicons
                             name="location-sharp"
                             size={20}
-                            color={focused ? theme.colors.custom_white : theme.colors.custom_black}
+                            color={focused ? theme.colors.white : theme.colors.black}
                         />
                     )
                 }}
@@ -50,7 +50,7 @@ export function AppRoutes(){
                         <FontAwesome
                             name="search"
                             size={20}
-                            color={focused ? theme.colors.custom_white : theme.colors.custom_black}
+                            color={focused ? theme.colors.white : theme.colors.black}
                         />
                     )
                 }}
@@ -63,7 +63,7 @@ export function AppRoutes(){
                         <FontAwesome
                             name="folder"
                             size={20}
-                            color={focused ? theme.colors.custom_white : theme.colors.custom_black}
+                            color={focused ? theme.colors.white : theme.colors.black}
                         />
                     )
                 }}
@@ -76,7 +76,7 @@ export function AppRoutes(){
                         <MaterialIcons
                             name="settings"
                             size={20}
-                            color={focused ? theme.colors.custom_white : theme.colors.custom_black}
+                            color={focused ? theme.colors.white : theme.colors.black}
                         />
                     )
                 }}

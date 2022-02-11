@@ -23,7 +23,7 @@ import { useLocationInfo } from '../../hooks/locationInfo';
 import { WeatherInfo } from '../../components/WeatherInfo';
 
 export function MyLocation(){
-   const { loading, weatherInfo, geoLocationInfo } = useLocationInfo();
+   const { loading, currentLocationWeather, currentLocationInfo } = useLocationInfo();
 
    const actualDateDay = format(new Date(), 'd', {locale: ptBR});
    const actualDateMonth = format(new Date(), 'MMMM', {locale: ptBR});
@@ -48,29 +48,29 @@ export function MyLocation(){
                </WeatherIcons>
 
                <Header>
-                  <CurrentLocation>{geoLocationInfo[0].name}</CurrentLocation>
+                  <CurrentLocation>{currentLocationInfo[0].name}</CurrentLocation>
                   <CurrentDate>{ actualDate }</CurrentDate>
                </Header>
 
                <Weather>
                   <Icon
-                     source={{ uri: `http://openweathermap.org/img/wn/${weatherInfo.current.weather[0].icon}@2x.png` }}
+                     source={{ uri: `http://openweathermap.org/img/wn/${currentLocationWeather.current.weather[0].icon}@2x.png` }}
                   ></Icon>
-                  <Temperature>{`${weatherInfo.current.temp.toFixed().toString()}ºC`}</Temperature>
+                  <Temperature>{`${currentLocationWeather.current.temp.toFixed().toString()}ºC`}</Temperature>
                </Weather>
 
                <WeatherInfoContainer>
                   <WeatherInfo
                      title='Sensação'
-                     value={`${weatherInfo.current.feels_like.toFixed().toString()}ºC`}
+                     value={`${currentLocationWeather.current.feels_like.toFixed().toString()}ºC`}
                   />
                   <WeatherInfo 
                      title='Umidade'
-                     value={`${weatherInfo.current.humidity.toString()}%`}
+                     value={`${currentLocationWeather.current.humidity.toString()}%`}
                   />
                   <WeatherInfo 
                      title='Vento'
-                     value={`${(weatherInfo.current.wind_speed * 3.6).toPrecision(2).toString()}Km/h`}
+                     value={`${(currentLocationWeather.current.wind_speed * 3.6).toPrecision(2).toString()}Km/h`}
                   />
                </WeatherInfoContainer>
             </>

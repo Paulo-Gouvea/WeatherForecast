@@ -20,7 +20,7 @@ import { useLocationInfo } from '../../hooks/locationInfo';
 import { ForecastCard } from '../../components/ForecastCard';
  
 export function Forecast(){
-   const { loading, weatherInfo } = useLocationInfo();
+   const { loading, currentLocationWeather } = useLocationInfo();
 
    function formatDate(date: number){
       let actualDateDay = format(date, 'd', {locale: ptBR});
@@ -54,7 +54,7 @@ export function Forecast(){
                   >
                      <ForecastCardContainer>
                         {
-                           weatherInfo.daily.slice(1).map((item) => {
+                           currentLocationWeather.daily.slice(1).map((item) => {
                               return(
                                  <ForecastCard
                                     key={item.dt} 
