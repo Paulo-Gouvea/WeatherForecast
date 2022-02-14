@@ -1,9 +1,13 @@
 import React, {
     useState,
     useEffect,
+    useCallback,
 } from 'react';
 import {
-    StatusBar
+    StatusBar,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -25,6 +29,8 @@ import {
    Weather,
    Location,
 } from './styles';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 import { api } from '../../services/api';
 import { GeoLocationDTOS } from '../../interface/GeoLocationDTOS';
@@ -60,7 +66,7 @@ export function Search(){
                 const locationResponse = await api.get(`geo/1.0/direct?q=${desiredLocation}&appid=${APP_ID}`);
                 const locationData = locationResponse.data[0];
 
-                const weatherResponse = await api.get(`data/2.5/onecall?lat=${locationData.lat}&lon=${locationData.lon}&units=metric&exclude=minutely,hourly,daily,alerts&appid=${APP_ID}`);
+                const weatherResponse = await api.get(`data/2.5/onecall?lat=${locationData.lat}&lon=${locationData.lon}&lang=pt_br&units=metric&exclude=minutely,hourly,daily,alerts&appid=${APP_ID}`);
                 const weatherData = weatherResponse.data;
 
                 if(isMounted){
@@ -85,64 +91,76 @@ export function Search(){
         };
     }, [isInputSubmitted]);
 
+    useFocusEffect(useCallback(() => {
+        setDesiredLocation('');
+        setIsInputSubmitted(false);
+        setAnotherLocationLoading(true);
+        setAnotherLocationInfo({} as GeoLocationDTOS);
+        setAnotherLocationWeather({} as WeatherDTOS);
+    }, []));
+
    return (
-      <Container
-        isDarkModeOn={isDarkModeOn}
-      >
-            <StatusBar
-                backgroundColor='transparent'
-                barStyle='light-content'
-                translucent
-            />
-          <Header>
-            <Title>Digite uma cidade</Title>
-            <Description>Digite a cidade que você queira saber sobre as informações detalhadas do tempo neste momento.</Description>
-          </Header>
-
-          <InputContainer>
-            <InputBox
-                isDarkModeOn={isDarkModeOn}
-            >
-                <Input 
-                    placeholder='Procurar'
-                    placeholderTextColor={theme.colors.white}
-                    value={desiredLocation}
-                    onChangeText={setDesiredLocation}
-                    onSubmitEditing={handleInputSubmit}
-                />
-                <SearchIconButton
-                    onPress={handleInputSubmit}
+       <KeyboardAvoidingView behavior='height' enabled>
+           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <Container
+                    isDarkModeOn={isDarkModeOn}
                 >
-                    <FontAwesome
-                        name="search"
-                        size={20}
-                        color={theme.colors.white}
-                    />
-                </SearchIconButton>
-            </InputBox>
-          </InputContainer>
+                        <StatusBar
+                            backgroundColor='transparent'
+                            barStyle='light-content'
+                            translucent
+                        />
+                    <Header>
+                        <Title>Digite uma cidade</Title>
+                        <Description>Digite a cidade que você queira saber sobre as informações detalhadas do tempo neste momento.</Description>
+                    </Header>
 
-            {
-                anotherLocationLoading === false &&
-                <Content>
-                    <ChosenLocationWeather
-                        isDarkModeOn={isDarkModeOn}
-                    >
-                        <Temperature>{`${anotherLocationWeather.current.temp.toFixed().toString()}ºC`}</Temperature>
-                        
-                        <Icon
-                            source={{ uri: `http://openweathermap.org/img/wn/${anotherLocationWeather.current.weather[0].icon}@2x.png` }}
-                        ></Icon>
-                        
-                        <ChosenLocation>
-                            <Weather>{`${anotherLocationWeather.current.weather[0].description}`}</Weather>
-                            <Location>{`${anotherLocationInfo.name}`}</Location>
-                        </ChosenLocation>
-                    </ChosenLocationWeather>
-                </Content>
-            }
+                    <InputContainer>
+                        <InputBox
+                            isDarkModeOn={isDarkModeOn}
+                        >
+                            <Input 
+                                placeholder='Procurar'
+                                placeholderTextColor={theme.colors.white}
+                                value={desiredLocation}
+                                onChangeText={setDesiredLocation}
+                                onSubmitEditing={handleInputSubmit}
+                            />
+                            <SearchIconButton
+                                onPress={handleInputSubmit}
+                            >
+                                <FontAwesome
+                                    name="search"
+                                    size={20}
+                                    color={theme.colors.white}
+                                />
+                            </SearchIconButton>
+                        </InputBox>
+                    </InputContainer>
+
+                        {
+                            anotherLocationLoading === false &&
+                            <Content>
+                                <ChosenLocationWeather
+                                    isDarkModeOn={isDarkModeOn}
+                                >
+                                    <Temperature>{`${anotherLocationWeather.current.temp.toFixed().toString()}ºC`}</Temperature>
+                                    
+                                    <Icon
+                                        source={{ uri: `http://openweathermap.org/img/wn/${anotherLocationWeather.current.weather[0].icon}@2x.png` }}
+                                    ></Icon>
+                                    
+                                    <ChosenLocation>
+                                        <Weather>{`${anotherLocationWeather.current.weather[0].description}`}</Weather>
+                                        <Location>{`${anotherLocationInfo.name}`}</Location>
+                                    </ChosenLocation>
+                                </ChosenLocationWeather>
+                            </Content>
+                        }
 
 
-      </Container>
+                </Container>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
    );
 }

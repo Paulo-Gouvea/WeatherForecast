@@ -19,6 +19,7 @@ import { useLocationInfo } from '../../hooks/locationInfo';
 import { useDarkMode } from '../../hooks/darkMode';
 
 import { ForecastCard } from '../../components/ForecastCard';
+import { LoadAnimation } from '../../components/LoadAnimation';
  
 export function Forecast(){
    const { loading, currentLocationWeather } = useLocationInfo();
@@ -45,7 +46,7 @@ export function Forecast(){
          {
             loading
             ?
-            <Title>Carregando...</Title>
+            <LoadAnimation />
             :
             <>
                <Title>Previsão do Tempo</Title>

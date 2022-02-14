@@ -15,27 +15,25 @@ export const Container = styled.View<MyLocationStyleProps>`
   isDarkModeOn ? theme.colors.dark_background : theme.colors.light_background };
 `;
 
-export const Loading = styled.Text`
+export const WeatherIconList = styled.ScrollView<MyLocationStyleProps>`
   flex: 1;
-  align-items: center;
-  justify-content: center;
-
-  margin-top: ${getStatusBarHeight() + 15}px;
-
-  font-size: ${RFValue(25)}px;
-  font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.white};
-`;
-
-export const WeatherIcons = styled.View<MyLocationStyleProps>`
-  width: 100%;
-  height: ${RFValue(89)}px;
-
-  margin-top: ${getStatusBarHeight() + 15}px;
 
   background-color: ${({ theme, isDarkModeOn }) => 
   isDarkModeOn ? theme.colors.dark_weather_icons : theme.colors.light_weather_icons};
+  margin-top: ${getStatusBarHeight() + 15}px;
 `;
+
+export const WeatherIcon = styled.View`
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 ${RFValue(10)}px;
+`
+
+export const WeatherIconImage = styled.Image`
+  width: ${RFValue(60)}px;
+  height: ${RFValue(60)}px;
+`
 
 export const Header = styled.View`
   margin: ${RFValue(24)}px 0;

@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-   StatusBar
+   StatusBar, View
 } from 'react-native';
  
 import {
    Container,
-   Loading,
-   WeatherIcons,
+   WeatherIconList,
+   WeatherIcon,
+   WeatherIconImage,
    Header,
    CurrentLocation,
    CurrentDate,
@@ -23,6 +24,7 @@ import { useLocationInfo } from '../../hooks/locationInfo';
 import { useDarkMode } from '../../hooks/darkMode';
 
 import { WeatherInfo } from '../../components/WeatherInfo';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 export function MyLocation(){
    const { loading, currentLocationWeather, currentLocationInfo } = useLocationInfo();
@@ -32,6 +34,8 @@ export function MyLocation(){
    const actualDateMonth = format(new Date(), 'MMMM', {locale: ptBR});
    const actualDateYear = format(new Date(), 'yyyy', {locale: ptBR});
    const actualDate = `${actualDateDay} de ${actualDateMonth} de ${actualDateYear}`;
+
+   const weatherIconsIdentifier = ['01d', '01n', '02d', '02n', '03d', '04d', '09d', '10d', '10n', '11d', '13d', '50d'];
 
    return (
       <Container
@@ -45,14 +49,28 @@ export function MyLocation(){
          {
             loading 
             ?
-               <Loading>Carregando...</Loading>
+               <LoadAnimation />
             :
             <>
-               <WeatherIcons
-                  isDarkModeOn={isDarkModeOn}
-               >
-
-               </WeatherIcons>
+               <View style={{ height: 150 }}>
+                  <WeatherIconList
+                     isDarkModeOn={isDarkModeOn}
+                     horizontal={true}
+                     showsHorizontalScrollIndicator={false}
+                  >
+                     {
+                        weatherIconsIdentifier.map((item) => {
+                           return (
+                              <WeatherIcon key={item} >
+                                 <WeatherIconImage
+                                    source={{ uri: `http://openweathermap.org/img/wn/${item}@2x.png` }}
+                                 />
+                              </WeatherIcon>
+                           )
+                        })
+                     }
+                  </WeatherIconList>
+               </View>
 
                <Header>
                   <CurrentLocation>{currentLocationInfo[0].name}</CurrentLocation>

@@ -21,6 +21,7 @@ export const Container = styled.View<ForecastCardStyleProps>`
 
 export const DayInfo = styled.View`
     align-items: center;
+    width: ${RFValue(95)}px;
 `;
 
 export const WeekDay = styled.Text`
@@ -36,6 +37,7 @@ export const CalendarDay = styled.Text`
 `;
 
 export const Temperature = styled.Text`
+    width: ${RFValue(75)}px;
     font-size: ${RFValue(30)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
     color: ${({ theme }) => theme.colors.white};

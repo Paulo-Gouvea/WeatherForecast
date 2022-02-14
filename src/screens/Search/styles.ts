@@ -7,8 +7,7 @@ interface SearchStyleProps {
 }
 
 export const Container = styled.View<SearchStyleProps>`
-    flex: 1;
-
+    height: 100%;
     align-items: center;
 
     padding: 0 ${RFValue(45)}px;
@@ -77,7 +76,6 @@ export const SearchIconButton = styled.TouchableOpacity`
 `;
 
 export const Content = styled.View`
-    flex: 1;
     align-items: center;
 `;
 
@@ -110,7 +108,7 @@ export const ChosenLocation = styled.View``;
 export const Weather = styled.Text`
     font-size: ${RFValue(16)}px;
     font-family: ${({ theme }) => theme.fonts.medium};
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme }) => theme.colors.white};
     text-align: center;
 `;
 
