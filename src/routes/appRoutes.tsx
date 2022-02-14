@@ -9,6 +9,7 @@ import { useTheme } from "styled-components";
 import { MyLocation } from "../screens/MyLocation";
 import { Search } from "../screens/Search";
 import { Forecast } from "../screens/Forecast";
+import { Settings } from "../screens/Settings";
 
 export function AppRoutes(){
     const theme = useTheme();
@@ -30,7 +31,7 @@ export function AppRoutes(){
             }}
         >
             <Screen 
-                name="My Location"
+                name="Localização"
                 component={MyLocation}
                 options={{
                     tabBarIcon: (({ focused }) =>
@@ -43,7 +44,7 @@ export function AppRoutes(){
                 }}
             />
             <Screen 
-                name="Search"
+                name="Procurar"
                 component={Search}
                 options={{
                     tabBarIcon: (({ focused }) =>
@@ -56,7 +57,7 @@ export function AppRoutes(){
                 }}
             />
             <Screen 
-                name="Forecast"
+                name="Previsão"
                 component={Forecast}
                 options={{
                     tabBarIcon: (({ focused }) =>
@@ -69,8 +70,8 @@ export function AppRoutes(){
                 }}
             />
             <Screen 
-                name="Settings"
-                component={MyLocation}
+                name="Configurações"
+                component={Settings}
                 options={{
                     tabBarIcon: (({ focused }) =>
                         <MaterialIcons
