@@ -1,8 +1,13 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-export const Container = styled.View`
-    background-color: ${({theme}) => theme.colors.light_weather_card};
+interface ForecastCardStyleProps {
+    isDarkModeOn: boolean;
+}
+
+export const Container = styled.View<ForecastCardStyleProps>`
+    background-color: ${({theme, isDarkModeOn}) => 
+    isDarkModeOn ? theme.colors.dark_weather_card : theme.colors.light_weather_card};
     width: 100%;
     height: ${RFValue(75)}px;
 

@@ -30,6 +30,8 @@ import { api } from '../../services/api';
 import { GeoLocationDTOS } from '../../interface/GeoLocationDTOS';
 import { WeatherDTOS } from '../../interface/WeatherDTOS';
 
+import { useDarkMode } from '../../hooks/darkMode'
+
 import { useTheme } from 'styled-components';
 
 const APP_ID = process.env.APP_ID;
@@ -42,6 +44,7 @@ export function Search(){
     const [anotherLocationWeather, setAnotherLocationWeather] = useState<WeatherDTOS>({} as WeatherDTOS);
 
     const theme = useTheme();
+    const { isDarkModeOn } = useDarkMode();
 
     function handleInputSubmit(){
         setIsInputSubmitted(true);
@@ -83,7 +86,9 @@ export function Search(){
     }, [isInputSubmitted]);
 
    return (
-      <Container>
+      <Container
+        isDarkModeOn={isDarkModeOn}
+      >
             <StatusBar
                 backgroundColor='transparent'
                 barStyle='light-content'
@@ -95,7 +100,9 @@ export function Search(){
           </Header>
 
           <InputContainer>
-            <InputBox>
+            <InputBox
+                isDarkModeOn={isDarkModeOn}
+            >
                 <Input 
                     placeholder='Procurar'
                     placeholderTextColor={theme.colors.white}
@@ -118,7 +125,9 @@ export function Search(){
             {
                 anotherLocationLoading === false &&
                 <Content>
-                    <ChosenLocationWeather>
+                    <ChosenLocationWeather
+                        isDarkModeOn={isDarkModeOn}
+                    >
                         <Temperature>{`${anotherLocationWeather.current.temp.toFixed().toString()}ºC`}</Temperature>
                         
                         <Icon

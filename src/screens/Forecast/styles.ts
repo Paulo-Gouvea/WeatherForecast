@@ -2,10 +2,15 @@ import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-export const Container = styled.View`
+interface ForecastStyleProps {
+    isDarkModeOn: boolean;
+}
+
+export const Container = styled.View<ForecastStyleProps>`
     flex: 1;
 
-    background-color: ${({theme}) => theme.colors.light_background};
+    background-color: ${({theme, isDarkModeOn}) => 
+    isDarkModeOn ? theme.colors.dark_background : theme.colors.light_background};
 `;
 
 export const Title = styled.Text`

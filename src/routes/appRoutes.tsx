@@ -11,15 +11,18 @@ import { Search } from "../screens/Search";
 import { Forecast } from "../screens/Forecast";
 import { Settings } from "../screens/Settings";
 
+import { useDarkMode } from '../hooks/darkMode';
+
 export function AppRoutes(){
     const theme = useTheme();
+    const { isDarkModeOn } = useDarkMode();
 
     return(
         <Navigator
             screenOptions={{
                 headerShown:false,
                 tabBarStyle:{
-                    backgroundColor: theme.colors.light_weather_card,
+                    backgroundColor:  isDarkModeOn ? theme.colors.dark_weather_card : theme.colors.light_weather_card,
                     height: 70,
                 },
                 tabBarActiveTintColor: theme.colors.white,

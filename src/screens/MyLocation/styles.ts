@@ -2,12 +2,17 @@ import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-export const Container = styled.View`
+interface MyLocationStyleProps {
+  isDarkModeOn: boolean;
+}
+
+export const Container = styled.View<MyLocationStyleProps>`
   flex: 1;
 
   align-items: center;
 
-  background-color: ${({theme}) => theme.colors.light_background};
+  background-color: ${({theme, isDarkModeOn}) => 
+  isDarkModeOn ? theme.colors.dark_background : theme.colors.light_background };
 `;
 
 export const Loading = styled.Text`
@@ -22,13 +27,14 @@ export const Loading = styled.Text`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const WeatherIcons = styled.View`
+export const WeatherIcons = styled.View<MyLocationStyleProps>`
   width: 100%;
   height: ${RFValue(89)}px;
 
   margin-top: ${getStatusBarHeight() + 15}px;
 
-  background-color: ${({ theme }) => theme.colors.light_weather_icons};
+  background-color: ${({ theme, isDarkModeOn }) => 
+  isDarkModeOn ? theme.colors.dark_weather_icons : theme.colors.light_weather_icons};
 `;
 
 export const Header = styled.View`

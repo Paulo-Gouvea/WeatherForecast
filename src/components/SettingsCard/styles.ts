@@ -1,8 +1,13 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-    background-color: ${({theme}) => theme.colors.light_weather_card};
+interface SettingsCardStyleProps {
+    isDarkModeOn: boolean;
+}
+
+export const Container = styled.View<SettingsCardStyleProps>`
+    background-color: ${({theme, isDarkModeOn}) => 
+    isDarkModeOn ? theme.colors.dark_weather_card : theme.colors.light_weather_card};
     width: 100%;
     height: ${RFValue(75)}px;
 
@@ -20,8 +25,9 @@ export const Title = styled.Text`
     color: ${({ theme }) => theme.colors.white};
 `;
 
-export const Button = styled.TouchableOpacity`
-    background-color: ${({theme}) => theme.colors.dark_mode_button};
+export const Button = styled.TouchableOpacity<SettingsCardStyleProps>`
+    background-color: ${({theme, isDarkModeOn}) => 
+    isDarkModeOn ? theme.colors.light_background : theme.colors.dark_background};
     height: 80%;
     width: ${RFValue(60)}px;
     border-radius: 20px;

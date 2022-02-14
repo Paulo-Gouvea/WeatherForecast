@@ -4,8 +4,6 @@ export default {
         black: '#000000',
         gray: '#CCCFDA',
 
-        dark_mode_button: '#2E2219',
-
         light_background: '#828CAE',
         light_weather_icons: '#7882A7',
         light_weather_card: '#A7B4E0',

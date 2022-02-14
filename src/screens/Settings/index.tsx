@@ -9,11 +9,17 @@ import {
    Content,
 } from './styles';
  
+import { useDarkMode } from '../../hooks/darkMode';
+
 import { SettingsCard } from '../../components/SettingsCard';
 
 export function Settings(){
+    const { isDarkModeOn, handleDarkMode } = useDarkMode();
+
    return (
-      <Container>
+      <Container
+        isDarkModeOn={isDarkModeOn}
+      >
         <StatusBar
             backgroundColor='transparent'
             barStyle='light-content'
@@ -25,7 +31,9 @@ export function Settings(){
         <Content>
             <SettingsCard
                 title='Modo Noturno'
-                buttonName='moon'
+                buttonName={ isDarkModeOn ? 'sun' : 'moon' }
+                isDarkModeOn={isDarkModeOn}
+                onPress={handleDarkMode}
             />
         </Content>
       </Container>

@@ -14,16 +14,20 @@ interface ForecastCardProps {
    fullDate: string;
    temperature: string;
    icon: string;
+   isDarkModeOn: boolean;
 }
  
 export function ForecastCard({
    weekDay,
    fullDate,
    temperature,
-   icon
+   icon,
+   isDarkModeOn
 }: ForecastCardProps){
    return (
-      <Container>
+      <Container
+         isDarkModeOn={isDarkModeOn}
+      >
           <DayInfo>
               <WeekDay>{weekDay}</WeekDay>
               <CalendarDay>{fullDate}</CalendarDay>

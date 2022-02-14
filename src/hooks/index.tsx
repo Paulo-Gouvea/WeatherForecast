@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 
 import { LocationInfoProvider } from './locationInfo';
+import { DarkModeProvider } from './darkMode';
 
 interface AppProviderProps {
     children: ReactNode;
@@ -10,9 +11,11 @@ interface AppProviderProps {
 
 function AppProvider({children}: AppProviderProps){
     return(
-        <LocationInfoProvider>
-            { children }
-        </LocationInfoProvider>
+        <DarkModeProvider>
+            <LocationInfoProvider>
+                { children }
+            </LocationInfoProvider>
+        </DarkModeProvider>
     )
 }
 

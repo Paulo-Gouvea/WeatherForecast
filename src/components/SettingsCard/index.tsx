@@ -10,16 +10,25 @@ import {
 interface SettingsCardProps {
     title: string;
     buttonName: React.ComponentProps<typeof Feather>['name'];
+    isDarkModeOn: boolean;
+    onPress: () => void;
 }
  
 export function SettingsCard({
     title,
-    buttonName
+    buttonName,
+    isDarkModeOn,
+    onPress
 }: SettingsCardProps){
    return (
-      <Container>
+      <Container
+        isDarkModeOn={isDarkModeOn}
+      >
           <Title>{title}</Title>
-          <Button>
+          <Button
+            onPress={onPress}
+            isDarkModeOn={isDarkModeOn}
+          >
               <Feather
                 name={buttonName}
                 color='white'

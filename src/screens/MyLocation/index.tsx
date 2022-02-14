@@ -18,12 +18,15 @@ import {
 
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+
 import { useLocationInfo } from '../../hooks/locationInfo';
- 
+import { useDarkMode } from '../../hooks/darkMode';
+
 import { WeatherInfo } from '../../components/WeatherInfo';
 
 export function MyLocation(){
    const { loading, currentLocationWeather, currentLocationInfo } = useLocationInfo();
+   const { isDarkModeOn } = useDarkMode();
 
    const actualDateDay = format(new Date(), 'd', {locale: ptBR});
    const actualDateMonth = format(new Date(), 'MMMM', {locale: ptBR});
@@ -31,7 +34,9 @@ export function MyLocation(){
    const actualDate = `${actualDateDay} de ${actualDateMonth} de ${actualDateYear}`;
 
    return (
-      <Container>
+      <Container
+         isDarkModeOn={isDarkModeOn}
+      >
          <StatusBar
             backgroundColor='transparent'
             barStyle='light-content'
@@ -43,7 +48,9 @@ export function MyLocation(){
                <Loading>Carregando...</Loading>
             :
             <>
-               <WeatherIcons>
+               <WeatherIcons
+                  isDarkModeOn={isDarkModeOn}
+               >
 
                </WeatherIcons>
 

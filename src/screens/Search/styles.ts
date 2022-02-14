@@ -2,13 +2,18 @@ import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-export const Container = styled.View`
+interface SearchStyleProps {
+    isDarkModeOn: boolean;
+}
+
+export const Container = styled.View<SearchStyleProps>`
     flex: 1;
 
     align-items: center;
 
     padding: 0 ${RFValue(45)}px;
-    background-color: ${({theme}) => theme.colors.light_background};
+    background-color: ${({theme, isDarkModeOn}) => 
+    isDarkModeOn ? theme.colors.dark_background : theme.colors.light_background};
 `;
 
 export const Header = styled.View`
@@ -39,14 +44,15 @@ export const InputContainer = styled.View`
     margin-top: ${RFValue(20)}px;
 `;
 
-export const InputBox = styled.View`
+export const InputBox = styled.View<SearchStyleProps>`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
     width: ${RFValue(220)}px;
     height: ${RFValue(50)}px;
-    background-color: ${({ theme }) => theme.colors.light_weather_card};
+    background-color: ${({ theme, isDarkModeOn }) => 
+    isDarkModeOn ? theme.colors.dark_weather_card : theme.colors.light_weather_card};
 
     border-radius: 20px;
 `;
@@ -75,8 +81,9 @@ export const Content = styled.View`
     align-items: center;
 `;
 
-export const ChosenLocationWeather = styled.View`
-    background-color: ${({ theme }) => theme.colors.light_weather_card};
+export const ChosenLocationWeather = styled.View<SearchStyleProps>`
+    background-color: ${({ theme, isDarkModeOn }) => 
+    isDarkModeOn ? theme.colors.dark_weather_card : theme.colors.light_weather_card};
     width: ${RFValue(162)}px;
     height: ${RFValue(200)}px;
     
