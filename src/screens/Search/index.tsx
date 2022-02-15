@@ -8,6 +8,7 @@ import {
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
     Keyboard,
+    Alert,
 } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -78,6 +79,13 @@ export function Search(){
                 setIsInputSubmitted(false);
             } catch (error) {
                 console.log(error);
+                Alert.alert("Erro", "Cidade não encontrada. Verifique se a cidade foi digitada corretamente.");
+
+                setDesiredLocation('');
+                setIsInputSubmitted(false);
+                setAnotherLocationLoading(true);
+                setAnotherLocationInfo({} as GeoLocationDTOS);
+                setAnotherLocationWeather({} as WeatherDTOS);
             } finally {
                 if(isMounted){
                     setAnotherLocationLoading(false);
