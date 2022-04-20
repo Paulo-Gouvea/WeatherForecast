@@ -47,6 +47,9 @@ function LocationInfoProvider({ children }: LocationInfoProviderProps){
               
             const locationResponse = await api.get(`geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=${APP_ID}`)
             const locationData = locationResponse.data;
+
+            console.log("LOCATION DATA:")
+            console.log(locationData);
   
             if(isMounted){
                setCurrentLocationWeather(weatherData);
